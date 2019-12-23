@@ -36,8 +36,9 @@ class Email:
         # update
         self.config.__dict__ = load_dict
 
-        self.image_path = self.config.output_path + "/../Jpg/image_000.jpg"
-        self.video_path = self.config.output_path + "/../video/result.mp4"
+        rst_path = os.path.dirname(self.config.output_path)
+        self.image_path = rst_path + "/Jpg/image_000.jpg"
+        self.video_path = rst_path + "/video/result.mp4"
         # ssl
         smtp = SMTP_SSL(self.host_server)
         smtp.set_debuglevel(1)
