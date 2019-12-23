@@ -624,7 +624,7 @@ class RenderCore:
         prefix = self.config.output_path.split(".png")[0]
         for rotation in np.arange(self.config.rotation_start, self.config.rotation_end, self.config.rotation_step):
             self.rotation = rotation
-            self.config.output_path = prefix + "_rotation_%03d"%(rotation)
+            self.config.output_path = prefix + "_" + self.config.rotation_axis + "_rotation_%03d"%(rotation)
             self.buildOnly()
             self.build_rotation()
             self.do_render()
