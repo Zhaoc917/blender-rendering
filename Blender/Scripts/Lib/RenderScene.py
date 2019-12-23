@@ -7,7 +7,7 @@ from ConfigClass import *
 class RenderScene:
     def __init__(self):
         # self.config = None
-        self.blender_path = "D:/tools/blender_2.81/blender.exe"
+        self.blender_path = "/home/zhaoc/blender/blender_2.81/blender"
         self.background_render = True
         self.config_path = "./config.json"
 

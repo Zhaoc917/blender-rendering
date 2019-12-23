@@ -17,7 +17,7 @@ class TaskImageVideo():
         self.CropPath = self.ImageInput + "Crop/"
         self.VideoOutput = self.ImageInput + "video/"
         self.VideoName = 'result'
-        self.ffmpegPath = 'D://FFmpeg/ffmpeg/bin/ffmpeg.exe'
+        self.ffmpegPath = 'ffmpeg'
         self.framerate = 2
         self.pixel_format = "yuv420p"
         self.input_format = "image_%03d.jpg"
