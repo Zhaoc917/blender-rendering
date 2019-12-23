@@ -14,7 +14,6 @@ segment_colors = [0x800000, 0xD2691E, 0x808000, 0x008080, 0x000080,
 
 # paths
 scene_path = './'
-scene_name = "full"
 task_name = "%s%s%s"%(datetime.datetime.now().year,datetime.datetime.now().month,datetime.datetime.now().day)
 config_save_path = "./config_" + str(time.time()).split('.')[0] + ".json"
 input_prefix = None
@@ -100,7 +99,7 @@ class Config:
                  loop_material=loop_material, singular_face_material=singular_face_material,
                  cut_json_name=cut_json_name, singularity_json_name=singularity_json_name,
                  transform_json_name=transform_json_name, specular=specular, show_singularity_color=show_singularity_color,
-                 scene_name=scene_name, task_name=task_name, cell_name=cell_name, input_prefix=input_prefix,
+                 task_name=task_name, cell_name=cell_name, input_prefix=input_prefix,
                  output_prefix=output_prefix, config_save_path=config_save_path, time_cost_total=time_cost_total,
                  time_cost_cell=time_cost_cell, framerate=framerate, nb_name=nb_name):
         self.singular_colors = singular_colors
@@ -144,7 +143,6 @@ class Config:
         self.transform_json_name = transform_json_name
         self.specular = specular
         self.show_singularity_color = show_singularity_color
-        self.scene_name = scene_name
         self.task_name = task_name
         self.cell_name = cell_name
         self.input_prefix = input_prefix
@@ -198,7 +196,6 @@ class Config:
         config_dict['transform_json_name'] = self.transform_json_name
         config_dict['specular'] = self.specular
         config_dict['show_singularity_color'] = self.show_singularity_color
-        config_dict['scene_name'] = self.scene_name
         config_dict['task_name'] = self.task_name
         config_dict['cell_name'] = self.cell_name
         config_dict['input_prefix'] = self.input_prefix
