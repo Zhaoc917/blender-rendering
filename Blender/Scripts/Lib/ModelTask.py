@@ -20,6 +20,7 @@ class TaskHub():
         self.config_path = None
         self.blender_path = None
         self.batch_type = "LayerTwo"
+        self.email_reveiver = None
 
     def run(self):
         # load json
@@ -58,6 +59,8 @@ class TaskHub():
             task.CropImage()
             task.ProduceVideo()
 
+        if self.email_reveiver != None:
+            email.receiver = self.email_reveiver
         email.send_email()
         os.remove(config.config_save_path)
 
