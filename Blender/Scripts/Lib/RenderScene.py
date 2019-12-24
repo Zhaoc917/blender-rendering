@@ -11,6 +11,8 @@ class RenderScene:
         self.background_render = True
         self.config_path = "./config.json"
         self.batch = None
+        self.material_path = None
+        self.texture_path = None
 
     def read_json(self):
         with open(self.config_path, 'r') as load_f:
@@ -41,7 +43,7 @@ class RenderScene:
 
         if self.batch == "LayerTwo":
             for index, dirname in enumerate(f_list):
-                output = config.output_prefix + "Output/Models/" + config.task_name + \
+                output = config.output_prefix + config.task_name + \
                          "/" + config.cell_name + "/" + dirname + "/"
                 if not os.path.exists(output):
                     os.makedirs(output)
@@ -56,7 +58,7 @@ class RenderScene:
                     self.render()
         if self.batch == "LayerOne":
             for index, filename in enumerate(f_list):
-                output = config.output_prefix + "Output/Models/" + config.task_name + \
+                output = config.output_prefix + config.task_name + \
                          "/" + config.cell_name + "/" + filename + ".png"
                 scene_name_list += f_list
                 config.scene_path = model_dir + filename + "/"
@@ -69,14 +71,51 @@ class RenderScene:
             config.show_loops = False
             for index, filename in enumerate(f_list):
                 if ".obj" in filename:
-                    output = config.output_prefix + "Output/Models/" + config.task_name + \
+                    output = config.output_prefix + config.task_name + \
                              "/" + config.cell_name + "/" + filename.split(".")[0] + ".png"
                     config.scene_path = model_dir
                     config.output_path = output
-                    config.material = "model_only"
+                    # config.material = "model_only"
                     config.object_name = filename
                     config.save_config(config.config_save_path)
                     self.render()
+        if self.batch == "Materials":
+            material_list = os.listdir(self.material_path)
+            config.scene_path = model_dir
+            config.show_singularities = False
+            config.cut_mode = "None"
+            config.show_loops = False
+            config.material = None
+            for index, material in enumerate(material_list):
+                if ".blend" in material:
+                    output = config.output_prefix + config.task_name + \
+                             "/" + config.cell_name + "/" + material.split(".")[0] + ".png"
+                    config.output_path = output
+                    config.material_filename = material
+                    config.save_config(config.config_save_path)
+                    self.render()
+        if self.batch == "Textures":
+            texture_list = os.listdir(self.texture_path)
+            config.scene_path = model_dir
+            config.show_singularities = False
+            config.cut_mode = "None"
+            config.show_loops = False
+            config.material = "original"
+            config.material_filename = None
+            for index, texture in enumerate(texture_list):
+                if ".png" in texture:
+                    output = config.output_prefix + config.task_name + \
+                             "/" + config.cell_name + "/" + texture.split(".")[0] + ".png"
+                    config.output_path = output
+                    config.texture_path = self.texture_path + texture
+                    config.save_config(config.config_save_path)
+                    self.render()
+        if self.batch == "Single_Animation":
+            output = config.output_prefix + config.task_name + \
+                     "/" + config.cell_name + "/" + config.scene_path.split("/")[-2] + ".png"
+            config.output_path = output
+            config.save_config(config.config_save_path)
+            self.render()
         cell_end_time = datetime.datetime.now()
         config.time_cost_total = str(cell_end_time - start_time).split('.')[0]
         config.time_cost_cell = str(cell_end_time - cell_start_time).split('.')[0]

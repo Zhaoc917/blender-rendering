@@ -96,6 +96,8 @@ class RenderCore:
         bpy.context.scene.render.resolution_y = height
         bpy.context.scene.render.film_transparent = True
         bpy.context.scene.view_layers[0].cycles.use_denoising = True
+        bpy.context.scene.cycles.samples = self.config.samples
+        bpy.context.scene.cycles.preview_samples = self.config.preview_samples
 
         bpy.context.scene.use_nodes = True
         tree = bpy.context.scene.node_tree
@@ -392,7 +394,6 @@ class RenderCore:
                     or 'Singular Faces' in objects[i].name:
                 objects[i].parent = parent_object
         objects['Mesh'].parent = parent_object
-
         transform_json = os.path.join(
             self.config.scene_path, self.config.transform_json_name)
         if os.path.exists(transform_json):

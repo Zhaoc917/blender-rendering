@@ -39,6 +39,8 @@ height = 1500
 mode = "single"
 plane = "predefined"
 use_envmap = False
+samples = 128
+preview_samples = 32
 
 # main mesh
 material = "original"
@@ -87,7 +89,7 @@ nb_name = None
 class Config:
     def __init__(self, singular_colors=singular_colors, segment_colors=segment_colors,
                  texture_path=texture_path, envmap_path=envmap_path, scene_path=scene_path, output_path=output_path,
-                 width=width, height=height, mode=mode, sheen=sheen,
+                 width=width, height=height, mode=mode, sheen=sheen, samples=samples, preview_samples=preview_samples,
                  object_name=object_name, material=material, plane=plane, rotation_start=rotation_start,
                  rotation_end=rotation_end, rotation_step=rotation_step, edge_scale=edge_scale,
                  pole_scale=pole_scale, zero_scale=zero_scale, roughness=roughness, rotation_axis=rotation_axis,
@@ -113,6 +115,8 @@ class Config:
         self.object_name = object_name
         self.mode = mode
         self.sheen = sheen
+        self.samples = samples
+        self.preview_samples = preview_samples
         self.material = material
         self.plane = plane
         self.rotation_start = rotation_start
@@ -166,6 +170,8 @@ class Config:
         config_dict['object_name'] = self.object_name
         config_dict['mode'] = self.mode
         config_dict['sheen'] = self.sheen
+        config_dict['samples'] = self.samples
+        config_dict['preview_samples'] = self.preview_samples
         config_dict['material'] = self.material
         config_dict['plane'] = self.plane
         config_dict['rotation_start'] = self.rotation_start
