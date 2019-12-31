@@ -30,6 +30,10 @@ class TaskImageVideo():
         # rename
         f_list = os.listdir(self.ImageInput)
         idx = 0
+        path = os.getcwd()
+        path = os.path.dirname(path)
+        path = os.path.dirname(path)
+        path = os.path.dirname(path)
         for index, filename in enumerate(f_list):
             if os.path.splitext(filename)[1] == '.png':
                 img = Image.open(self.ImageInput + filename)
@@ -37,7 +41,7 @@ class TaskImageVideo():
 
                 draw = ImageDraw.Draw(img)
                 width, height = img.size
-                font = ImageFont.truetype("arial.ttf", 50)
+                font = ImageFont.truetype(path + "/Data/arial.ttf", 50)
                 draw.text((100, height-100), os.path.splitext(filename)[0], font=font, fill="#ff0000")
                 img.save(output_name)
 

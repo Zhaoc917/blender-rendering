@@ -31,6 +31,7 @@ class Strebel:
         path = os.getcwd()
         path = os.path.dirname(path)
         path = os.path.dirname(path)
+        path = os.path.dirname(path)
         dir = path + "/Output/Strebel/"
         self.output_path = dir
         if not os.path.exists(dir):
